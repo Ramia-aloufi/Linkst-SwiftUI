@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct LinkstApp: App {
+    
+    @StateObject private var userVM = UserViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(userVM)
+           
         }
     }
 }
