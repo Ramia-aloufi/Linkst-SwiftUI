@@ -23,7 +23,7 @@ final class AuthViewModel: ObservableObject {
             state = .loading
             do {
                 let response = try await service.login(loginRequest: login)
-                TokenManager.shared.token = response.token
+                TokenHelper.token = response.token
                 state = .data(response)
             } catch let error as APIError {
                 state = .error(error.errorDescription ?? "Something went wrong")
@@ -37,7 +37,7 @@ final class AuthViewModel: ObservableObject {
             state = .loading
             do {
                 let response = try await service.register(signUpRequest: signUp)
-                TokenManager.shared.token = response.token
+                TokenHelper.token = response.token
                 state = .data(response)
             } catch let error as APIError {
                 state = .error(error.errorDescription ?? "Something went wrong")

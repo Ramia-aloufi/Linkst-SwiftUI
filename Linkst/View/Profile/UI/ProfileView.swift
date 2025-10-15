@@ -16,12 +16,12 @@ struct ProfileView: View {
         case .data(let t):
             ScrollView{
                 ProfileHeader(user:t)
-                ProfileTabs()
+                ProfileTabs(userId:t.id)
 
             }
         case .error(let string):
             Text("\(string)")
-        case .empty:
+        case .empty,.idle:
             Text("Empty")
         }
     }

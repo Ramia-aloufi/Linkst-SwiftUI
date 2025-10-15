@@ -39,7 +39,7 @@ enum PostEndpoint:Endpoint {
     var headers: [Header] {
         var result: [Header] = [.accept, .jsonContentType]
         // Add Authorization if token exists
-        if let token = TokenManager.shared.token {
+        if let token = TokenHelper.token {
             result.append(.authorization(token: token))
         }
         
@@ -72,9 +72,9 @@ struct PostResponse: Codable {
 struct Post: Codable, Identifiable, Equatable {
     let id: UUID
     let caption: String?
-    let content: String
-    let media: String
-    let type: String
+    let content: String?
+    let media: String?
+    let type: String?
     let createdAt: Date
     let likeCount: Int
     let commentCount: Int

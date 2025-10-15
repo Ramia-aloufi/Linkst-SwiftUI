@@ -18,8 +18,8 @@ struct Tabs: View {
             Tab("Reels", systemImage: "film") {
                 ReelsView()
             }
-            Tab("New", systemImage: "plus") {
-                NewPost()
+            Tab("Search", systemImage: "magnifyingglass") {
+                SearchView()
             }
             Tab("Messages", systemImage: "envelope") {
                 ChatView()

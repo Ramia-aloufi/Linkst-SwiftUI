@@ -37,7 +37,7 @@ enum ChatEndpoint:Endpoint {
         var result: [Header] = [.accept, .jsonContentType]
         
         // Add Authorization if token exists
-        if let token = TokenManager.shared.token {
+        if let token = TokenHelper.token {
             result.append(.authorization(token: token))
         }
         

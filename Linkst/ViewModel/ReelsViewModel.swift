@@ -10,10 +10,14 @@ import Foundation
 @MainActor
 class ReelsViewModel: ObservableObject {
     
-    @Published private(set) var state: AppState<[Reels]> = .loading
+    static let shared = ReelsViewModel()
+    
+    @Published private(set) var state: AppState<[Reels]> = .idle
+    @Published private(set) var userReels: AppState<[Reels]> = .idle
+
     private let service:ReelsService
     
-    init(service:ReelsService = ReelsServiceImp()) {
+    private init(service:ReelsService = ReelsServiceImp()) {
         self.service = service
         Task { await getAll() }
     }
@@ -35,7 +39,19 @@ class ReelsViewModel: ObservableObject {
         }
     }
     
-
-
+    func getUserReels(userId:UUID) async {
+        userReels = .loading
+        do {
+            let response = try await service.getUserReels(userId: userId)
+            if response.isEmpty {
+                userReels = .empty
+            } else {
+                userReels = .data(response)
+            }
+        } catch let apiError as APIError {
+            state = .error(apiError.errorDescription ?? "Something went wrong")
+        } catch {
+            state = .error(error.localizedDescription)
+        }        }
+    }
     
-}

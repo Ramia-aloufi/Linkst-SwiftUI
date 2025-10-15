@@ -7,10 +7,11 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct ReelsView: View {
     
-    @StateObject var vm: ReelsViewModel = .init()
+    @ObservedObject var vm: ReelsViewModel = ReelsViewModel.shared
     @State private var currentIndex: Int = 0
     
     var visibleReels: [Reels]{
@@ -30,7 +31,7 @@ struct ReelsView: View {
             Text("Error: \(error)")
         case .data(let data):
             ReelsPagerView(reels: data)
-        case .empty:
+        case .empty,.idle:
             Text("No data")
         }
     }

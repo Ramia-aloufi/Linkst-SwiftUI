@@ -41,7 +41,7 @@ enum MessageEndpoint:Endpoint {
         }
         
         // Add Authorization if token exists
-        if let token = TokenManager.shared.token {
+        if let token = TokenHelper.token {
             result.append(.authorization(token: token))
         }
         

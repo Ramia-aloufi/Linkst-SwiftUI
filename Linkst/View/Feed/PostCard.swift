@@ -22,21 +22,22 @@ struct PostCard: View {
             }
             
             DSText((post.caption != nil ? post.caption : post.content) ?? "" , font: .body)
-            PostMediaView(mediaURL: post.media, type: post.type, height: 200)
-            PostActionsView(
-                   likeCount: post.likeCount,
-                   commentCount: post.commentCount,
-                   isLiked: post.likedByCurrentUser,
-                   onLike: {
-                       print("Liked post ")
-                   },
-                   onComment: {
-                       print("Comment tapped on post")
-                   }
-               )
+            if let media = post.media,let type = post.type{
+                PostMediaView(mediaURL: media, type: type, height: 200)
+                PostActionsView(
+                    likeCount: post.likeCount,
+                    commentCount: post.commentCount,
+                    isLiked: post.likedByCurrentUser,
+                    onLike: {
+                        print("Liked post ")
+                    },
+                    onComment: {
+                        print("Comment tapped on post")
+                    }
+                )
+        }
         }
         .padding(8)
-//        .background(Color(UIColor.systemBackground))
         .cornerRadius(12)
     }
 }

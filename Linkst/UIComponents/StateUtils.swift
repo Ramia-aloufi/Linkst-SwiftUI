@@ -8,6 +8,7 @@
 import Foundation
 
 public enum AppState<T>{
+    case idle
     case loading
     case data(T)
     case error(String)

@@ -9,16 +9,19 @@ import Foundation
 enum ReelsEndpoint:Endpoint {
     
     case getAll
+    case userReels(UUID)
 
     var body: RequestBody? {
         switch self {
         case .getAll: return nil
+        case .userReels: return nil
         }
     }
     
     var path: String {
         switch self {
         case .getAll: return "/reels/getAll"
+        case .userReels(let id): return "/reels/user/\(id)"
         }
     }
     
@@ -27,7 +30,7 @@ enum ReelsEndpoint:Endpoint {
         var result: [Header] = [.accept, .jsonContentType]
         
         // Add Authorization if token exists
-        if let token = TokenManager.shared.token {
+        if let token = TokenHelper.token {
             result.append(.authorization(token: token))
         }
         

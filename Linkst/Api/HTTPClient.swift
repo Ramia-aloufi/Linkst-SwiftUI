@@ -74,11 +74,11 @@ final class HTTPClient {
             return try decoder.decode(R.self, from: data)
             
         case 401:
-            TokenManager.shared.token = nil
+            TokenHelper.token = nil
             throw APIError.unauthorized
             
         case 403:
-            TokenManager.shared.token = nil
+            TokenHelper.token = nil
             throw APIError.forbidden
             
         default:

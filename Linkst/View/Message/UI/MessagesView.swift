@@ -9,7 +9,7 @@ import SwiftUI
 import _PhotosUI_SwiftUI
 
 struct MessagesView: View {
-    @StateObject var viewModel: MessagesViewModel = .init()
+    @ObservedObject var viewModel = MessagesViewModel.shared
     @StateObject var ws = ChatWebSocket()
     
     @State var message: String = ""
@@ -25,7 +25,7 @@ struct MessagesView: View {
                 ProgressView()
             case .error(let error):
                 Text("Error: \(error)")
-            case .empty:
+            case .empty,.idle:
                 Text("No messages yet")
             case .data(let messages):
                 ScrollViewReader { proxy in

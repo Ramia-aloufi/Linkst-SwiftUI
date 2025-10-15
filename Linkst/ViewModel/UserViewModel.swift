@@ -8,7 +8,7 @@
 import Foundation
 @MainActor
 class UserViewModel:ObservableObject{
-    @Published var state:AppState<User> = .loading
+    @Published var state:AppState<User> = .idle
     @Published private(set) var me:User? = nil
     
     private var service:UserService!

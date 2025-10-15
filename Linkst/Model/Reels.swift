@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct Reels: Codable,Identifiable {
+struct Reels: Codable,Identifiable,Hashable {
     let id:UUID
     let title:String
     let createdAt:Date?

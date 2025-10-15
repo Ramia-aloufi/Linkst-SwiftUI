@@ -14,16 +14,15 @@ final class PostViewModel: ObservableObject {
     
     static let shared = PostViewModel()
     
-    @Published private(set) var state: AppState<PostResponse> = .loading
-    @Published private(set) var userPosts: AppState<[UserPosts]> = .loading
-    @Published private(set) var newPost: AppState<UserPosts> = .loading
+    @Published private(set) var state: AppState<PostResponse> = .idle
+    @Published private(set) var userPosts: AppState<[UserPosts]> = .idle
+    @Published private(set) var newPost: AppState<Bool> = .idle
 
     private let service:PostService
     
     private init(service:PostService = PostServiceImp()) {
         self.service = service
-        Task { await fetchPosts()
-                }
+        Task { await fetchPosts() }
     }
     
     func fetchPosts() async {
@@ -43,7 +42,7 @@ final class PostViewModel: ObservableObject {
     }
     
     func fetchUserPosts() async {
-        print("fetchUserPosts")
+        userPosts = .loading
         do {
             let response = try await service.getUserPosts()
             print(response)
@@ -60,11 +59,13 @@ final class PostViewModel: ObservableObject {
     }
     
     func createNewPost(data:Data) async {
+        print("Creating new post")
         newPost = .loading
         do{
             let response = try await service.createPost(data)
+            print(response)
             if response.media != nil {
-                newPost = .data(response)
+                newPost = .data(true)
                 switch self.userPosts {
                 case .data(var posts):
                     posts.append(response)

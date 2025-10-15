@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct Feed: View {
+    
     @ObservedObject var viewModel = PostViewModel.shared
-
+    @State private var showNewPost = false
+    
     var body: some View {
         switch viewModel.state {
         case .loading:
@@ -17,19 +19,37 @@ struct Feed: View {
         case .error(let message):
             Text("Error: \(message)")
                 .foregroundColor(.red)
-        case .empty:
+        case .empty, .idle:
             Text("No posts available")
         case .data(let response):
-            DSText("Posts",font: .subtitle)
-            List{
-                    ForEach(response.content) { post in
-                        
-                        PostCard(post: post)                        
+            
+            NavigationStack {
+                List(response.content) { post in
+                    PostCard(post: post)
+                        .listRowInsets(EdgeInsets())
                 }
-                    .listRowInsets(EdgeInsets())
+                .listStyle(PlainListStyle())
+                .navigationTitle("Posts")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(action: {
+                            showNewPost = true
+                            
+                        }) {
+                            Image(systemName: "plus")
+                                .imageScale(.large)
+                        }
+                    }
+                    
+                }
+                .navigationDestination(isPresented: $showNewPost) {
+                    NewPost()
+                }
             }
-            .padding(.vertical)
-            .listStyle(PlainListStyle())
+            
+            
+            
         }
     }
 }

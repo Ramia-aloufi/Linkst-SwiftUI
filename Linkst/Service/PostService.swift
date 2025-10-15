@@ -21,6 +21,7 @@ final class PostServiceImp: PostService {
   
     func allPosts() async throws -> PostResponse {
         let data:PostResponse = try await client.request(PostEndpoint.all)
+        print(data)
         return data
     }
     

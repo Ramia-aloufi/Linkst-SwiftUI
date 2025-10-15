@@ -38,7 +38,7 @@ struct AuthView: View {
             case .error(let err):
                 Text(err)
                     .foregroundColor(.red)
-            case .empty:
+            case .empty , .idle:
                 EmptyView()
             }
             

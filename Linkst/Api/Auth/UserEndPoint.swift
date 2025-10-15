@@ -25,7 +25,7 @@ enum UserEndpoint:Endpoint {
     var method: HTTPMethod { .GET }
     var headers: [Header] {
         var result: [Header] = [.accept, .jsonContentType]
-                if let token = TokenManager.shared.token {
+                if let token = TokenHelper.token {
             result.append(.authorization(token: token))
         }
         

@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
+    @AppStorage(Config.token) private var token: String?
     
     var body: some View {
-        if(TokenManager.shared.token == nil){
+        if(token == nil){
             AuthView()
         }else{
             Tabs()
         }
-
+        
     }
 }
 

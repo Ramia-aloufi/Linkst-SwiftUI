@@ -7,13 +7,16 @@
 
 import Foundation
 class MessagesViewModel: ObservableObject {
+    
+    static let shared = MessagesViewModel()
+    
     @Published var state: AppState<[Message]>
     
     
     private var service: MessagesService!
     
-    init(service: MessagesService = MessagesServiceImpl()) {
-        self.state = .loading
+    private init(service: MessagesService = MessagesServiceImpl()) {
+        self.state = .idle
         self.service = service
     }
     
@@ -36,6 +39,7 @@ class MessagesViewModel: ObservableObject {
     }
     
     func sendMessage(chatId:UUID,data:Data)async {
+        state = .loading
         do {
             if let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] {
                 for (key, value) in dict {

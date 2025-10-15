@@ -31,7 +31,7 @@ struct ChatView: View {
 
             }
 
-        case .empty:
+        case .empty,.idle:
             Text("empty")
         }
     }

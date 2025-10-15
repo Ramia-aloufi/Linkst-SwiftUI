@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileTabs: View {
-    @ObservedObject var viewModel = PostViewModel.shared
+    let userId:UUID
     @State var isSelected: Int? = 0
     var body: some View {
         VStack{
@@ -53,7 +53,7 @@ struct ProfileTabs: View {
             case 0:
                 UserPostsView()
             case 1:
-                Text("Reels")
+                UserReelsView(userId: userId)
             default:
                 Text("Projects")
             }
@@ -62,5 +62,5 @@ struct ProfileTabs: View {
 }
 
 #Preview {
-    ProfileTabs()
+    ProfileTabs(userId:UUID(uuidString: "28306bf9-4e77-479d-95e3-daafe40a6f86") ?? UUID())
 }
