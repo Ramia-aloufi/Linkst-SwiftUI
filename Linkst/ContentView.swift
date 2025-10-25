@@ -13,9 +13,9 @@ struct ContentView: View {
     
     var body: some View {
         if(token == nil){
-            AuthView()
+            AuthView().tint(Color("Primary"))
         }else{
-            Tabs()
+            Tabs().tint(Color("Primary"))
         }
         
     }

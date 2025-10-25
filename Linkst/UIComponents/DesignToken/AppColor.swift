@@ -8,15 +8,42 @@
 import Foundation
 import SwiftUICore
 extension Color {
-    static let Primary       = Color("Primary")
-    static let Secondary     = Color("Secondary")
-    static let Accent        = Color("Accent")
-    static let Background    = Color("Background")
-    static let Surface       = Color("Surface")
-    static let TextPrimary   = Color("TextPrimary")
-    static let TextSecondary = Color("TextSecondary")
-    static let Placeholder   = Color("Placeholder")
-    static let Error         = Color("Error")
-    static let Success       = Color("Success")
-    static let Warning       = Color("Warning")
+    struct Brand {
+        static let primary       = Color("Primary")
+        static let secondary     = Color("Secondary")
+        static let Accent        = Color("Accent")
+    }
+
+    struct Background {
+        static let base    = Color("Base")
+        static let surface = Color("Surface")
+        static let overlay = Color("Overlay")
+    }
+    
+    struct Text {
+        static let primary   = Color("TextPrimary")
+        static let secondary = Color("TextSecondary")
+        static let tertiary  = Color("TertiaryText")
+    }
+    
+    struct Info {
+        static let card   = Color("InfoCard")
+        static let text  = Color("InfoText")
+    }
+    
+    struct Error {
+        static let card   = Color("ErrorCard")
+        static let text  = Color("ErrorText")
+    }
+    
+    struct Success {
+        static let card   = Color("SuccessCard")
+        static let text  = Color("SuccessText")
+    }
+    
+    struct Warning {
+        static let card   = Color("WarningCard")
+        static let text  = Color("WarningText")
+    }
+    
 }

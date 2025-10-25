@@ -11,6 +11,8 @@ protocol Endpoint {
     var method: HTTPMethod { get }
     var headers: [Header] { get }
     var body: RequestBody? { get }
+    var queryItems: [URLQueryItem]? { get }
+
 }
 
 enum RequestBody {

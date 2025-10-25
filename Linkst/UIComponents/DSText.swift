@@ -18,42 +18,42 @@ import SwiftUI
 /// ```
 struct DSText: View {
     private let text: String
-    private   var font: Font = .body
-    private  var color: Color = .primary
-    private  var alignment: TextAlignment = .leading
-    private  var lineLimit: Int? = nil
-    private  var multilineTextAlignment: TextAlignment? = nil
+    private var font: Font = .body
+    private var style: any ShapeStyle
+    private var alignment: TextAlignment = .leading
+    private var lineLimit: Int? = nil
+    private var multilineTextAlignment: TextAlignment? = nil
     
-    init(_ text: String, font: Font = .body, color: Color = .primary, alignment: TextAlignment = .leading, lineLimit: Int? = nil, multilineTextAlignment: TextAlignment? = nil) {
+    init(_ text: String, font: Font = .body, color style: some ShapeStyle = Color.primary, alignment: TextAlignment = .leading, lineLimit: Int? = nil, multilineTextAlignment: TextAlignment? = nil) {
         self.text = text
         self.font = font
-        self.color = color
+        self.style = style
         self.alignment = alignment
         self.lineLimit = lineLimit
         self.multilineTextAlignment = multilineTextAlignment
         
     }
-        
-        var body: some View {
-            Text(text)
-                .font(font)
-                .foregroundColor(color)
-                .lineLimit(lineLimit)
-                .multilineTextAlignment(multilineTextAlignment ?? alignment)
-        }
+    
+    var body: some View {
+        Text(text)
+            .font(font)
+            .foregroundStyle(style)
+            .lineLimit(lineLimit)
+            .multilineTextAlignment(multilineTextAlignment ?? alignment)
+    }
 }
 
 #Preview {
     DSText("Hello World")
     DSText("Welcome Back!",
-        font: .largeTitle,
-        color: .blue,
-        alignment: .center
+           font: .largeTitle,
+           color: .blue,
+           alignment: .center
     )
-
+    
     DSText("This is a longer description that may wrap into multiple lines.",
-        font: .body,
-        color: .gray,
-        lineLimit: 3
+           font: .body,
+           color: .gray,
+           lineLimit: 3
     )
 }

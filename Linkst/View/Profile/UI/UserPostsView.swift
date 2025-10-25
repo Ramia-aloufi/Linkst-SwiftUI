@@ -18,22 +18,20 @@ struct UserPostsView: View {
             case .data(let posts):
                 let columns = [
                     GridItem(.flexible()),
+                    GridItem(.flexible()),
                     GridItem(.flexible())
-
                 ]
-
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ForEach(posts, id: \.self) { post in
                             UserPostsCard(post: post)
-                                .frame(maxWidth: .infinity)
                         }
                     }
                     .padding()
                 }
 
             case .error(let string):
-                DSText(string, color: .init(.red))
+                DSText(string, color: Color.Error.text)
             case .empty,.idle:
                 DSText("No Data")
             }

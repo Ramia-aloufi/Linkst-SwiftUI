@@ -20,10 +20,14 @@ struct LoginForm: View {
 
     var body: some View {
         VStack(spacing: 16){
-                DSText("Login",font: .headline)
+            
+            DSText("Welcome back",font: .headline,color: Color.gradient(from: .Brand.primary, to: .Brand.secondary))
+
+            DSText("Sign in to your account",font: .body,color: Color.Text.secondary)
+                .padding(.bottom,.lg)
                 DSTextField("Email", text: $email,type: .email)
                 DSTextField("password", text: $password,type: .password)
-                DSButton("Login", style: .primary, size: .medium,isLoading: vm.state.isLoading) {
+            DSButton("Login", style: .primary, size: .medium,isLoading: vm.state.isLoading) {
                     let inputData = LoginReq(email: email, password: password)
                     Task {
                         await vm.login(login: inputData)

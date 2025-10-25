@@ -46,4 +46,6 @@ enum MessageEndpoint:Endpoint {
         }
         
         return result    }
+    var queryItems: [URLQueryItem]?{nil}
+
 }

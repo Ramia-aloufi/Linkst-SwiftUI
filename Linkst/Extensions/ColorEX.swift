@@ -19,8 +19,11 @@ extension Color {
         
         self.init(.sRGB, red: r, green: g, blue: b, opacity: opacity)
     }
+        static func gradient(from: Color, to: Color) -> LinearGradient {
+            LinearGradient(colors: [from, to], startPoint: .topLeading, endPoint: .bottomTrailing)
+        }
+    
+
 }
 
-extension Color{
-    
-}
+

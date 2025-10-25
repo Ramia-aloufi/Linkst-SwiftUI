@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUICore
 struct Constant{
-    static let primary      = Color(hex: "#3498db")
-    static let secondary    = Color(hex: "#2ecc71")
-    static let background   = Color(hex: "#f4f6f8")
-    static let textPrimary  = Color(hex: "#333333")
-    static let textSecondary = Color(hex: "#7f8c8d")
-    static let error        = Color(hex: "#e74c3c")
+//    static let primary      = Color(hex: "#3498db")
+//    static let secondary    = Color(hex: "#2ecc71")
+//    static let background   = Color(hex: "#f4f6f8")
+//    static let textPrimary  = Color(hex: "#333333")
+//    static let textSecondary = Color(hex: "#7f8c8d")
+//    static let error        = Color(hex: "#e74c3c")
     
 //    FONT
     static let title = Font.system(size: 24, weight: .bold)

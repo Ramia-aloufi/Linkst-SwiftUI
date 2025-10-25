@@ -38,8 +38,8 @@ public struct DSTextField: View {
         self.type = type
         self.validationMessage = validationMessage
         self._isSecured = State(initialValue: type == .password)
-        self.textColor =  validationMessage != nil ? .Error : .TextPrimary
-        self.fieldColor = validationMessage != nil ? .Error : style.color
+        self.textColor =  validationMessage != nil ? .Error.text : .errorText
+        self.fieldColor = validationMessage != nil ? .Error.text : style.color
        
         
     }
@@ -48,12 +48,11 @@ public struct DSTextField: View {
     public var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack(spacing: .sm) {
-                
                 Group {
                     switch type {
                     case .password:
                         Image(systemName: "lock")
-                            .foregroundColor(.TextSecondary)
+                            .foregroundColor(Color.Text.tertiary)
                         SecureField(placeholder, text: $text)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled(true)
@@ -61,11 +60,11 @@ public struct DSTextField: View {
                         
                             Button(action: { isSecured.toggle() }) {
                                 Image(systemName: isSecured ? "eye.slash" : "eye")
-                                    .foregroundColor(.TextSecondary)
+                                    .foregroundColor(Color.Text.tertiary)
                             }
                     case .email:
                         Image(systemName: "envelope")
-                            .foregroundColor(.TextSecondary)
+                            .foregroundColor(Color.Text.tertiary)
                         TextField(placeholder, text: $text)
                                 .keyboardType(.emailAddress)
                                 .textInputAutocapitalization(.never)
@@ -82,7 +81,8 @@ public struct DSTextField: View {
                 
             }
             .padding(.md)
-            .background(.surface)
+//            .background(Color.Background.surface)
+            .clipShape(RoundedRectangle(cornerRadius: .roundedMd))
             .overlay(
                 RoundedRectangle(cornerRadius: .roundedMd)
                     .stroke(fieldColor, lineWidth: 1)
@@ -91,9 +91,7 @@ public struct DSTextField: View {
             
             // Show validation message
             if let message = validationMessage {
-                Text(message)
-                    .font(.caption)
-                    .foregroundColor(.Error)
+                DSText(message,font: .caption2, color: Color.Error.text)
             }
         }
     }

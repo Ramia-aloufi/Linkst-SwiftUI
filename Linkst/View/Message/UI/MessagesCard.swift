@@ -9,7 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct MessagesCard: View {
-    @StateObject var userVM: UserViewModel = UserViewModel()
+    @ObservedObject var userVM = UserViewModel.shared
        let message: Message
        
        var body: some View {
@@ -34,7 +34,7 @@ struct MessagesCard: View {
 
 #Preview {
     MessagesCard(message: Message(id: UUID(), content: "hi", image: "https://res.cloudinary.com/dhrj6nlxm/image/upload/v1752511976/d1otdeleg2lzmsdm4i2i.jpg", user: MessageUser(id: UUID(),profileImage: "",fullName: ""), timestamp: Date.now))
-        .environmentObject(UserViewModel())
+//        .environmentObject(userVM)
     
     
 }

@@ -24,11 +24,24 @@ struct Feed: View {
         case .data(let response):
             
             NavigationStack {
-                List(response.content) { post in
-                    PostCard(post: post)
-                        .listRowInsets(EdgeInsets())
+                List{
+                    StoriesView()
+                    ForEach(response.content) { post in
+                        PostCard(post: post)
+                            .padding(.horizontal, 8)
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
+                    .listRowInsets(EdgeInsets())
+
+
                 }
-                .listStyle(PlainListStyle())
+                .listStyle(.plain)
+                .listRowBackground(Color.red)
+
+
+
+                
                 .navigationTitle("Posts")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -47,13 +60,13 @@ struct Feed: View {
                     NewPost()
                 }
             }
-            
-            
-            
+  
         }
+        
+        
+        
     }
 }
-
 
 #Preview {
     Feed()

@@ -51,6 +51,8 @@ enum PostEndpoint:Endpoint {
         
         return result
     }
+    var queryItems: [URLQueryItem]?{nil}
+
 }
 
 

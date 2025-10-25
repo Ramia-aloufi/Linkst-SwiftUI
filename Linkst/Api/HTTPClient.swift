@@ -20,7 +20,10 @@ final class HTTPClient {
     }()
     
     func request<E: Endpoint,R: Decodable>(_ endpoint: E) async throws -> R {
-        let url = baseURL.appendingPathComponent(endpoint.path)
+        var url = baseURL.appendingPathComponent(endpoint.path)
+        if  (endpoint.queryItems == nil) == false {
+            url.append(queryItems: endpoint.queryItems ?? [])
+        }
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         

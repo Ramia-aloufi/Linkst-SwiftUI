@@ -13,17 +13,21 @@ struct UserPostsCard: View {
         VStack{
             if let media = post.media , !media.isEmpty,let type = post.type {
                 PostMediaView(mediaURL: media, type:type, height: 200)
-                    .clipped()
             }
             else {
-                DSText(post.content,lineLimit: 1)
+                Rectangle()
+                    .fill(Color.pink)
+                    .frame(height: 200)
+                    .frame(maxWidth: .infinity)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
                     .overlay(content: {
-                        Rectangle().stroke(Color.gray, lineWidth: 0.5)
-                            .frame(width: .infinity,height: 200)
+                        DSText(post.content,color: .white,lineLimit: 1)
+                            
+
                     })
             }
             
-
+            
         }
     }
 }

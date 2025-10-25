@@ -19,7 +19,7 @@ struct PostActionsView: View {
         HStack(spacing: 30) {
             // Like Button
             Button(action: {
-                onLike?()
+               
             }) {
                 HStack(spacing: 2) {
                     Image(systemName: isLiked ? "heart.fill" : "heart")

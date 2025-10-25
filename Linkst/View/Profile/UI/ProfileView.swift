@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject var vm:UserViewModel = .init()
+    @ObservedObject var vm = UserViewModel.shared
     var body: some View {
         switch vm.state {
         case .loading:
@@ -17,6 +17,7 @@ struct ProfileView: View {
             ScrollView{
                 ProfileHeader(user:t)
                 ProfileTabs(userId:t.id)
+                        .offset(x:0,y:-20)
 
             }
         case .error(let string):

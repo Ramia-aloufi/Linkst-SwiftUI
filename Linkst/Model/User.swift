@@ -34,3 +34,9 @@ struct UserPost: Identifiable, Codable, Equatable,Hashable {
     let createdAt: Date
     let updatedAt: Date
 }
+
+struct UserInfo: Identifiable, Codable, Equatable,Hashable {
+    let id:UUID
+    let fullName:String
+    let profileImage:String?
+}

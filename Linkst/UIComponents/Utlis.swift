@@ -14,9 +14,9 @@ public enum Style {
     
     var color: Color {
         switch self {
-        case .primary: return .Primary
-        case .secondary: return .Secondary
-        case .error: return .Error
+        case .primary: return .primary.opacity(0.30)
+        case .secondary: return .secondary
+        case .error: return .Error.text
         }
     }
 }
@@ -57,19 +57,19 @@ public enum ButtonStyle {
         
         var backgroundColor: Color {
             switch self {
-            case .primary: return .Primary
-            case .secondary: return .Secondary
-            case .destructive: return .Error
+            case .primary: return .Brand.primary
+            case .secondary: return .Brand.secondary
+            case .destructive: return .Error.text
             case .ghost, .link: return .clear
             }
         }
         
         var foregroundColor: Color {
             switch self {
-            case .primary, .secondary: return .TextPrimary
+            case .primary, .secondary: return .Text.primary
             case .destructive: return .white
-            case .ghost: return .TextSecondary
-            case .link: return .Accent
+            case .ghost: return .Text.secondary
+            case .link: return .Brand.Accent
             }
         }
     }

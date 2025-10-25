@@ -19,37 +19,41 @@ struct PostMediaView: View {
             if let url = URL(string: mediaURL) {
                 AsyncImage(url: url) { image in
                     image.resizable()
-                         .scaledToFill()
-                         .frame(width: .infinity,height: height)
+                         .frame(maxWidth: .infinity)
+                         .frame(height: height)
                          .clipped()
                          .cornerRadius(10)
                 } placeholder: {
                     Color.gray.opacity(0.3)
-                        .frame(width: .infinity,height: height)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: height)
                         .cornerRadius(10)
                         .clipped()
 
                 }
             } else {
                 Color.gray.opacity(0.3)
-                    .frame(width: .infinity, height: height)
+                    .frame(height: height)
                     .cornerRadius(10)
             }
             
         case "video":
             if let url = URL(string: mediaURL) {
                 VideoPlayer(player: AVPlayer(url: url))
+                    .frame(maxWidth: .infinity)
                     .frame(width: .infinity, height: height)
                     .cornerRadius(10)
                     .clipped()
             } else {
                 Color.black
+                    .frame(maxWidth: .infinity)
                     .frame(width: .infinity, height: height)
                     .cornerRadius(10)
             }
             
         default:
             Color.gray.opacity(0.3)
+                .frame(maxWidth: .infinity) 
                 .frame(width: .infinity, height: height)
                 .cornerRadius(10)
         }

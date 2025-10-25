@@ -21,28 +21,36 @@ struct ProfileHeader: View {
                     .resizable()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
+                    .overlay {
+                        Circle().stroke(Color.white, lineWidth: 3)
+                    }
                     .offset(x:+20,y:-50)
+
             
             DSText(user.lastName + " " + user.firstName,font: .title)
                 .offset(x:0,y:-50)
-            DSText(user.profile.bio ?? "Bio",font: .title3,lineLimit: 2)
-                .offset(x:0,y:-50)
+            DSText(user.profile.bio ?? "Bio",font: .body,color: Color.Text.secondary)
+                .lineSpacing(8)
+                .offset(x:0,y:-40)
             
             HStack{
                 VStack{
-                    DSText("Posts",font: .title3)
+                    DSText("Posts",font: .callout)
                     DSText("\(user.posts.count)",font: .callout)
-                }
+                }                .offset(x:0,y:-20)
+
                 Spacer()
                 VStack{
-                    DSText("Followers",font: .title3)
+                    DSText("Followers",font: .callout)
                     DSText("\(user.followers.count)",font: .callout)
-                }
+                }                .offset(x:0,y:-20)
+
                 Spacer()
                 VStack{
-                    DSText("Following",font: .title3)
+                    DSText("Following",font: .callout)
                     DSText("\(user.following.count)",font: .callout)
-                }
+                }                .offset(x:0,y:-20)
+
                 
             }
 
@@ -53,5 +61,6 @@ struct ProfileHeader: View {
 }
 
 #Preview {
-//    ProfileHeader()
+    ProfileHeader(user: User(id: UUID(), firstName: "Lamar", lastName: "Aloufi", email: "aa@aa.com", followers: [UUID(),UUID()], following: [UUID(),UUID(),UUID()], savedPosts: [UUID(),UUID(),UUID()], profile: Profile(id: UUID(), bio: "", location: "", website: "", profilePictureUrl: "https://picsum.photos/id/1018/200/300", headerImageUrl: "https://picsum.photos/id/1018/200/300"), stories: [], posts: [], fullName: "Landry Aloufi")
+    )
 }

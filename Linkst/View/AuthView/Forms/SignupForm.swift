@@ -23,7 +23,9 @@ struct SignupForm: View {
 
     var body: some View {
         VStack(spacing: 16){
-            DSText("SignUp",font: .headline)
+            DSText("Join Us",font: .headline,color: Color.gradient(from: .Brand.primary, to: .Brand.secondary))
+            DSText("Create an account to start exploring",color: Color.Text.secondary)
+                .padding(.bottom,.lg)
 
             
             HStack{

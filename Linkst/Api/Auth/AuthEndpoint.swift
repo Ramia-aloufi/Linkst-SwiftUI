@@ -25,14 +25,14 @@ enum AuthEndpoint:Endpoint {
         case .signup(let req): return .encodable(req)
         }
     }
-    
     var path: String {
         switch self {
         case .login: return "/auth/login"
         case .signup: return "/auth/signup"
         }
     }
-    
     var method: HTTPMethod { .POST }
     var headers: [Header] { [.jsonContentType] }
+    var queryItems: [URLQueryItem]?{nil}
+
 }

@@ -42,4 +42,6 @@ enum ChatEndpoint:Endpoint {
         }
         
         return result    }
+    var queryItems: [URLQueryItem]?{nil}
+
 }

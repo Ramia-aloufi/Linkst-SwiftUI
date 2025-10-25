@@ -10,11 +10,12 @@ import SwiftUI
 @main
 struct LinkstApp: App {
     
-    @StateObject private var userVM = UserViewModel()
+    @ObservedObject var userVM = UserViewModel.shared
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .tint(Color("Primary"))
                 .environmentObject(userVM)
            
         }
